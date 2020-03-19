@@ -1,4 +1,4 @@
-import createFormRequestService from "./form-request";
+import formRequest from './form-request';
 
 interface AddPackagePayload {
   name: string;
@@ -11,25 +11,24 @@ type PyLoadCredentials = {
   password: string;
 };
 
-export default async function PyloadJs(host: string, credentials: PyLoadCredentials) {
-  const { get, post } = createFormRequestService(`${host}/api/`);
+export async function create(host: string, credentials: PyLoadCredentials) {
+  const { get, post } = formRequest(`${host}/api/`);
 
-  const session = await post("login", credentials);
-
-  if (!session) throw new Error("login failed");
+  const session = await post('login', credentials);
+  if (!session) throw new Error('login failed');
 
   /// api /////
 
   function addPackage(payload: AddPackagePayload): Promise<number> {
-    return post("addPackage", {
+    return post('addPackage', {
       ...payload,
       links: JSON.stringify(payload.links),
-      name: JSON.stringify(payload.name)
+      name: JSON.stringify(payload.name),
     });
   }
 
   return {
     addPackage,
-    statusDownloads: () => get("statusDownloads")
+    statusDownloads: () => get('statusDownloads'),
   };
 }

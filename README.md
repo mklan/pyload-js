@@ -17,7 +17,7 @@ nodejs wrapper for the pyload api
 ```javascript
 const PyloadJs = require('pyload-js').default;
 
-const pyload = await PyloadJs('https://my-pyload.srv', {
+const pyload = await PyloadJs.create('https://my-pyload.srv', {
   username: 'admin',
   password: '12345678',
 });
