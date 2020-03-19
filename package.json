@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "description": "nodejs wrapper for pyload api",
   "main": "dist/lib/index.js",
+  "types": "dist/lib/types/index.d.ts",
+  "files": [
+    "dist/lib/**/*"
+  ],
   "scripts": {
+    "version": "npm run format && git add -A src",
     "start": "npm run build && nodemon dist/lib/index.js",
     "prepare": "npm run build",
     "preversion": "npm run lint",
+    "postversion": "git push && git push --tags",
     "prepublishOnly": "npm test && npm run lint",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
@@ -14,6 +20,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matthias Klan <matthias.klan@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mklan/pyload-js.git"
+  },
+  "keywords": [
+    "pyload",
+    "download-manager"
+  ],
   "license": "ISC",
   "dependencies": {
     "@types/qs": "^6.9.1",

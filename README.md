@@ -4,7 +4,7 @@ nodejs wrapper for the pyload api
 
 ## install
 
-`yarn add pyload-js`
+`npm install pyload-js`
 
 ## api
 
