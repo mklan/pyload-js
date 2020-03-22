@@ -1,6 +1,6 @@
 {
   "name": "pyload-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "nodejs wrapper for pyload api",
   "main": "dist/lib/index.js",
   "types": "dist/lib/types/index.d.ts",
