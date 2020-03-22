@@ -12,7 +12,7 @@ type PyLoadCredentials = {
 };
 
 export async function create(host: string, credentials: PyLoadCredentials) {
-  const { post, postNew } = formRequest(`${host}/api/`);
+  const { post } = formRequest(`${host}/api/`);
 
   const session = await post('login', credentials);
   console.log(session);
