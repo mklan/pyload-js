@@ -1,6 +1,6 @@
 {
   "name": "pyload-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "nodejs wrapper for pyload api",
   "main": "dist/lib/index.js",
   "types": "dist/lib/types/index.d.ts",
@@ -17,7 +17,39 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "echo \"add linting\"",
     "build": "rimraf dist && tsc",
-    "test": "echo \"Error: no test specified\""
+    "test": "jest --coverage",
+    "test:watch": "jest --coverage --watch",
+    "test:prod": "npm run lint && npm run test -- --no-cache"
+  },
+  "jest": {
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    },
+    "collectCoverageFrom": [
+      "src/*.{js,ts}"
+    ]
   },
   "author": "Matthias Klan <matthias.klan@gmail.com>",
   "repository": {
@@ -30,12 +62,17 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "@types/node-fetch": "^2.5.5",
     "@types/qs": "^6.9.1",
+    "add": "^2.0.6",
     "axios": "^0.19.2",
-    "axios-cookiejar-support": "^0.5.1",
-    "qs": "^6.9.1"
+    "dotenv": "^8.2.0",
+    "qs": "^6.9.1",
+    "yarn": "^1.22.4"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.2",
