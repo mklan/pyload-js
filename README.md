@@ -31,3 +31,9 @@ console.log(packageId);
 const status = await pyload.statusDownloads();
 console.log(status);
 ```
+
+## tests
+
+rename the file `.env.sample` to `.env` and change te variables accordingly.
+
+`npm test`
