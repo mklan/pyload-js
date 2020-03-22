@@ -8,5 +8,5 @@ test('statusDownloads returns status array', async () => {
     password: TEST_PASSWORD || '',
   });
   const res = await statusDownloads();
-  expect(res).toEqual([]);
+  expect(res instanceof Array).toBe(true);
 });
