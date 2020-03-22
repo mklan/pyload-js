@@ -1,6 +1,6 @@
 {
   "name": "pyload-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "nodejs wrapper for pyload api",
   "main": "dist/lib/index.js",
   "types": "dist/lib/types/index.d.ts",
@@ -13,7 +13,6 @@
     "prepare": "npm run build",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags",
-    "prepublishOnly": "npm test && npm run lint",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "echo \"add linting\"",
     "build": "rimraf dist && tsc",
@@ -29,7 +28,9 @@
       ".(ts|tsx)": "ts-jest"
     },
     "testEnvironment": "node",
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testMatch": [
+      "<rootDir>/src/**/*.test.ts"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -62,16 +63,11 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@types/node-fetch": "^2.5.5",
-    "@types/qs": "^6.9.1",
-    "add": "^2.0.6",
-    "axios": "^0.19.2",
-    "dotenv": "^8.2.0",
-    "qs": "^6.9.1",
-    "yarn": "^1.22.4"
+    "axios": "^0.19.2"
   },
   "devDependencies": {
     "@types/jest": "^25.1.4",
+    "dotenv": "^8.2.0",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
