@@ -8,11 +8,11 @@ nodejs wrapper for the pyload api
 
 ## api
 
-`addPackage`
+`addPackage()`
 
 `statusDownloads`
 
-## example
+## usage
 
 ```javascript
 const PyloadJs = require('pyload-js');
@@ -34,6 +34,6 @@ console.log(status);
 
 ## tests
 
-rename the file `.env.sample` to `.env` and change te variables accordingly.
+rename `.env.sample` to `.env` and change the values accordingly.
 
 `npm test`
