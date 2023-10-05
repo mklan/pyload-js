@@ -6,12 +6,6 @@ nodejs wrapper for the pyload api
 
 `npm install pyload-js`
 
-## api
-
-`addPackage()`
-
-`statusDownloads`
-
 ## usage
 
 ```javascript
