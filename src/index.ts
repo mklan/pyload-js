@@ -17,16 +17,17 @@ export type PyloadApi = {
 }
 
 export async function create(host: string, credentials: PyLoadCredentials): Promise<PyloadApi> {
-  const { post } = formRequest(`${host}/api/`);
+  const req = formRequest(`${host}/api/`);
 
-  const session = await post('login', credentials);
-  console.log(session);
+
+  const session = await req.post('login', credentials);
+  console.log('session', session);
   if (!session) throw new Error('login failed');
 
   /// api /////
 
   function addPackage(payload: AddPackagePayload): Promise<number> {
-    return post('addPackage', {
+    return req.post('addPackage', {
       session,
       ...payload,
       links: JSON.stringify(payload.links),
@@ -37,7 +38,7 @@ export async function create(host: string, credentials: PyLoadCredentials): Prom
   return {
     addPackage,
     statusDownloads: () => {
-      return post(`statusDownloads`, { session });
+      return req.post(`statusDownloads`, { session });
     },
   };
 }

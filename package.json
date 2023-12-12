@@ -30,9 +30,6 @@
     "download-manager"
   ],
   "license": "ISC",
-  "dependencies": {
-    "axios": "^0.19.2"
-  },
   "devDependencies": {
     "@types/node": "^20.10.4",
     "dotenv": "^8.2.0",

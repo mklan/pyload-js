@@ -1,63 +1,37 @@
-import axios from 'axios';
-// import http from 'http';
-
-enum HttpMethods {
-  GET = 'get',
-  POST = 'post',
-}
+import querystring from 'querystring';
+import { join } from 'path';
 
 export default function createFormRequestService(baseURL: string) {
-  const transport = axios.create({
-    baseURL,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-  });
+  const post = async (path: string, formData?: Record<string, any>) => {
+    // Convert object to form-urlencoded format
+    // const params = querystring.stringify(formData);
+    const formBody = new URLSearchParams(formData).toString();
 
-  // const postNew = (path: string, payload?: Object) => {
-  //   const options = {
-  //     path,
-  //     hostname: baseURL,
-  //     port: 8000,
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/x-www-form-urlencoded',
-  //     },
-  //   };
+    if (process.env.PYLOADJS_DEBUG) console.log('POST', path, formBody);
 
-  //   // @ts-ignore
-  //   const data = new URLSearchParams(payload);
-  //   return new Promise((resolve, reject) => {
-  //     const req = http.request(options, res => {
-  //       console.log(`statusCode: ${res.statusCode}`);
-  //       let body = '';
-  //       res.on('data', d => {
-  //         body += d.toString();
-  //       });
 
-  //       res.on('end', () => {
-  //         console.log('bory', body);
-  //         resolve(body);
-  //       });
-  //       res.on('error', reject);
-  //     });
+    // API endpoint
+    const url = join(baseURL, path);
 
-  //     req.write(data);
-  //     req.end();
-  //   });
-  // };
+    // Fetch request options
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formBody,
+    };
 
-  const request = (method: HttpMethods) => async (path: string, payload?: Object) => {
-    // @ts-ignore
-    const params = new URLSearchParams(payload);
-    if (process.env.PYLOADJS_DEBUG) console.log(method, path, params);
-    // @ts-ignore
-    const { data } = await transport[method](path, params);
-    return data;
+    const res = await fetch(url, requestOptions);
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+
+    return await res.json();
   };
 
   return {
-    post: request(HttpMethods.POST),
-    // postNew,
+    post,
   };
 }
