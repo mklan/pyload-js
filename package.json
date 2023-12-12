@@ -1,13 +1,13 @@
 {
   "name": "pyload-js",
-  "version": "1.1.0",
-  "description": "nodejs wrapper for pyload api",
+  "version": "1.1.1",
+  "description": "NodeJS wrapper for pyload api",
   "type": "module",
   "main": "lib/index.cjs",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
-    "dist/**/*"
+    "lib/**/*"
   ],
   "scripts": {
     "version": "npm run format && git add -A src",
