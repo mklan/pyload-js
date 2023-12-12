@@ -11,7 +11,12 @@ type PyLoadCredentials = {
   password: string;
 };
 
-export async function create(host: string, credentials: PyLoadCredentials) {
+export type PyloadApi = {
+  addPackage: (payload: AddPackagePayload) => Promise<number>
+  statusDownloads: () => Promise<unknown>
+}
+
+export async function create(host: string, credentials: PyLoadCredentials): Promise<PyloadApi> {
   const { post } = formRequest(`${host}/api/`);
 
   const session = await post('login', credentials);
@@ -36,7 +41,3 @@ export async function create(host: string, credentials: PyLoadCredentials) {
     },
   };
 }
-
-export default {
-  create,
-};

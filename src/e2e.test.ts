@@ -1,3 +1,4 @@
+import { expect, test } from 'vitest';
 import { create } from '.';
 
 const { TEST_HOST, TEST_USERNAME, TEST_PASSWORD } = process.env;

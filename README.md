@@ -1,23 +1,18 @@
 # pyload-js
 
-nodejs wrapper for the pyload api
+NodeJS wrapper for the pyload api
 
-## install
+## Install
 
 `npm install pyload-js`
 
-## api
 
-`addPackage()`
-
-`statusDownloads`
-
-## usage
+## Usage
 
 ```javascript
-const PyloadJs = require('pyload-js');
+import pyloadjs from 'pyload-js';
 
-const pyload = await PyloadJs.create('https://my-pyload.srv', {
+const pyload = await pyloadjs.create('https://my-pyload.srv', {
   username: 'admin',
   password: '12345678',
 });
@@ -32,7 +27,7 @@ const status = await pyload.statusDownloads();
 console.log(status);
 ```
 
-## tests
+## Tests
 
 rename `.env.sample` to `.env` and change the values accordingly.
 
