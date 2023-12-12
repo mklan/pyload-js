@@ -10,20 +10,20 @@ NodeJS wrapper for the pyload api
 ## Usage
 
 ```javascript
-import pyloadjs from 'pyload-js';
+import pyloadJS from 'pyload-js';
 
-const pyload = await pyloadjs.create('https://my-pyload.srv', {
+const pyloadApi = await pyloadJS.create('https://my-pyload.srv', {
   username: 'admin',
   password: '12345678',
 });
 
-const packageId = await pyload.addPackage({
+const packageId = await pyloadApi.addPackage({
   name: 'first-package',
   links: ['http://some-link.com/1.rar', 'http://some-link.com/2.rar'],
 });
 console.log(packageId);
 
-const status = await pyload.statusDownloads();
+const status = await pyloadApi.statusDownloads();
 console.log(status);
 ```
 
