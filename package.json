@@ -1,6 +1,6 @@
 {
   "name": "pyload-js",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "NodeJS wrapper for pyload api",
   "type": "module",
   "main": "lib/index.cjs",
@@ -17,7 +17,7 @@
     "postversion": "git push && git push --tags",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "echo \"add linting\"",
-    "build": "tsup src/index.ts",
+    "build": "export NODE_ENV=production && tsup src/index.ts",
     "test": "vitest"
   },
   "author": "Matthias Klan <matthias.klan@gmail.com>",

@@ -2,6 +2,8 @@ import type { Options } from 'tsup';
 
 const env = process.env.NODE_ENV;
 
+console.log(env);
+
 export const tsup: Options = {
   splitting: true,
   clean: true, // clean up the dist folder
@@ -12,7 +14,7 @@ export const tsup: Options = {
   skipNodeModulesBundle: true,
   entryPoints: ['src/index.ts'],
   watch: env === 'development',
-  target: 'es2020',
-  outDir: env === 'production' ? 'dist' : 'lib',
+  target: 'esnext',
+  outDir: 'lib',
   entry: ['src/**/*.ts'], //include all files under src
 };
